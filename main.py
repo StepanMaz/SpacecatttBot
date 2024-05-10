@@ -98,6 +98,7 @@ command_list = [
     "/gif - Отримати гіфку котика з текстом, якщо він є",
     "/bengalcat - Отримати фото бенгалського котика з текстом, якщо він є",
     "/today - Отримати який ти котик сьогодні",
+    "/селисьзаїбав - нагадати @V_Vladyslavv, щоб він поселився",
 ]
 command_text = "\n".join(
     [f"{i+1}. {command}" for i, command in enumerate(command_list)])
@@ -176,6 +177,18 @@ async def getGifCat(message: types.Message):
 async def get_photo(message: types.Message):
     await message.reply(f'Фото {random.randint(10,1000)}/10, ставлю лайк')
 
+@dp.message(Command("селисьзаїбав", prefix="/"))
+async def todayCat(message: types.Message):
+    url = await fetch_image_url(cat_url)
+
+    try:
+        text = '@V_Vladyslavv селись заїбав'
+        img_buffer = await addTextOnPhoto(url, text)
+        await bot.send_message('@V_Vladyslavv селись заїбав!');
+        await bot.send_photo(chat_id=message.chat.id, photo=types.BufferedInputFile(file=img_buffer, filename='cat'))
+    except Exception as e:
+        print(e)
+        await message.reply('кота не буде, але @V_Vladyslavv селись заїбав')
 
 @dp.message(Command("today", prefix="/"))
 async def todayCat(message: types.Message):
