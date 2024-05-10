@@ -201,6 +201,17 @@ async def getCAT(message: types.Message):
         print(e)
         await message.reply('А нєхуй орати на мене, кота не буде.')
 
+@dp.message(Command("селисьзаїбав", prefix="/"))
+async def selys(message: types.Message):
+    url = await fetch_image_url(cat_url)
+    try:
+        text = '@V_Vladyslavv селись заїбав'
+        img_buffer = await addTextOnPhoto(url, text)
+        await bot.send_message(chat_id=message.chat.id,text='@V_Vladyslavv селись заїбав!');
+        await bot.send_photo(chat_id=message.chat.id, photo=types.BufferedInputFile(file=img_buffer, filename='cat'))
+    except Exception as e:
+        print(e)
+        await message.reply('кота не буде, але @V_Vladyslavv селись заїбав')
 
 
 async def main() -> None:
