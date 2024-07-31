@@ -14,6 +14,8 @@ TOKEN = os.environ.get('TOKEN')
 CATAPI = os.environ.get('CATAPI')
 PROXY_URL = "http://proxy.server:3128"
 
+MRPENIS_STICKER_ID = 'CAACAgIAAxkBAAIGjGaqRa866MFM7_2dE8YXCy3FHpxSAAKCMwACd7pgSlDQiqr55dnGNQQ'
+
 cat_url = f"https://api.thecatapi.com/v1/images/search?limit=1&api_key={CATAPI}"
 cat_beng_url = f'https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key={CATAPI}'
 
@@ -92,13 +94,14 @@ async def start(message: types.Message):
     await message.answer('Привіт, я створений щоб скидувати фото котів')
 
 command_list = [
-    "/start або /hello- Почати роботу з ботом",
+    "/start або /hello - Почати роботу з ботом",
     "/help - Показати список доступних команд",
     "/cat - Отримати фото котика з текстом, якщо він є",
     "/gif - Отримати гіфку котика з текстом, якщо він є",
     "/bengalcat - Отримати фото бенгалського котика з текстом, якщо він є",
     "/today - Отримати який ти котик сьогодні",
-    "/селисьзаїбав - нагадати @V_Vladyslavv, щоб він поселився",
+    "/селисьзаїбав - Нагадати @V_Vladyslavv, щоб він поселився",
+    "/mrpenis - Надіслати містера Пеніса"
 ]
 command_text = "\n".join(
     [f"{i+1}. {command}" for i, command in enumerate(command_list)])
@@ -226,6 +229,13 @@ async def selys(message: types.Message):
         print(e)
         await message.reply('кота не буде, але @V_Vladyslavv селись заїбав')
 
+@dp.message(Command("mrpenis", prefix="/"))
+async def mrpenis(message: types.Message):
+    try:
+        await bot.send_sticker(chat_id=message.chat.id, sticker=MRPENIS_STICKER_ID)
+    except Exception as e:
+        print(e)
+        await message.reply("Містера Пеніса вже не існує 🕯️")
 
 async def main() -> None:
     await dp.start_polling(bot)
