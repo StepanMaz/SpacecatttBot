@@ -14,7 +14,10 @@ DOGAPI = os.environ.get('CATAPI')
 
 cat_url = f"https://api.thecatapi.com/v1/images/search?limit=1&api_key={CATAPI}"
 dog_url = f"https://api.thedogapi.com/v1/images/search?limit=1&api_key={DOGAPI}"
-cat_beng_url = f'https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key={CATAPI}'
+cat_beng_url = f"https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=beng&api_key={CATAPI}"
+
+women_gif_id="CgACAgIAAxkBAAEttaNm5z4Bb4USY3rl1VvxCs6j6uZJ9gAC7lgAAl1rOEtbEWcpoPlGiTYE"
+mrpenis_gif_id="CAACAgIAAxkBAAIGjGaqRa866MFM7_2dE8YXCy3FHpxSAAKCMwACd7pgSlDQiqr55dnGNQQ"
 
 bot = Bot(TOKEN)
 dp = Dispatcher()
@@ -215,7 +218,7 @@ async def getHund(message: types.Message):
 @dp.message(Command("women", prefix="/"))
 async def women(message: types.Message):
     try:
-        await bot.send_animation(chat_id=message.chat.id, animation='CgACAgIAAxkBAAEttaNm5z4Bb4USY3rl1VvxCs6j6uZJ9gAC7lgAAl1rOEtbEWcpoPlGiTYE')
+        await bot.send_animation(chat_id=message.chat.id, animation=women_gif_id)
     except Exception as e:
         print(e)
         await message.reply('Мда, жінка зламала бота')
@@ -223,7 +226,7 @@ async def women(message: types.Message):
 @dp.message(Command("mrpenis", prefix="/"))
 async def mrpenis(message: types.Message):
     try:
-        await bot.send_sticker(chat_id=message.chat.id, sticker='CAACAgIAAxkBAAIGjGaqRa866MFM7_2dE8YXCy3FHpxSAAKCMwACd7pgSlDQiqr55dnGNQQ')
+        await bot.send_sticker(chat_id=message.chat.id, sticker=mrpenis_gif_id)
     except Exception as e:
         print(e)
         await message.reply("Містера Пеніса вже не існує 🕯️")
