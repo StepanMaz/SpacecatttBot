@@ -63,7 +63,7 @@ async def addTextOnPhoto(url, text):
     draw = ImageDraw.Draw(img)
 
     # Set the font and initial font size
-    font_path = "arial.ttf"  # Change this to your font file path if needed
+    font_path = "font.ttf"  # Change this to your font file path if needed
     text_width, text_height = img.size
 
     # start font size
